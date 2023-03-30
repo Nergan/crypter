@@ -2,9 +2,9 @@ from os import remove
 from os.path import isfile
 from time import sleep
 from threading import Thread
-
 from tkinter import Tk, Entry, StringVar, Toplevel, Button, Label
 from tkinter.filedialog import askopenfilename
+
 from pyAesCrypt import encryptFile, decryptFile
 
 
