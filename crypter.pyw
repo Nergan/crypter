@@ -156,8 +156,8 @@ def main():
     encbtn.place(x=0, y=40, width=100, height=40)
     decbtn.place(x=100, y=40, width=100, height=40)
 
-    Thread(target=lambda: checkpathloop(pathlabel, root)).start()
-    Thread(target=lambda: adaptsizeloop(pathlabel, keyfield, root)).start()
+    Thread(target=checkpathloop, args=(pathlabel, root)).start()
+    Thread(target=adaptsizeloop, args=(pathlabel, keyfield, root)).start()
     root.mainloop()
 
 
