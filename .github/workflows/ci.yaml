@@ -30,6 +30,7 @@ jobs:
           standalone: true
           disable-console: true
           enable-plugins: tk-inter
+          windows-icon-from-ico: ico.ico
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
