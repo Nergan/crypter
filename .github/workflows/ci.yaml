@@ -10,10 +10,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+    
+      - name: Get Commit Data
+        id: commit
+        uses: pr-mpt/actions-commit-hash@v2
+
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
           architecture: 'x64'
+          cache: 'pip'
+  
+      - run: pip install -r requirements.txt
 
       - uses: Nuitka/Nuitka-Action@main
         with:
@@ -26,5 +34,8 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
-          name: exe
-          path: build/crypter.exe
+          name: ${{ steps.commit.outputs.short }}
+          path: | 
+            build/crypter.exe
+            LICENSE.txt
+
