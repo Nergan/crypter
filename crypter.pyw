@@ -124,7 +124,7 @@ def main():
     root.config(background="black")
 
     key = StringVar()
-    bufsize = 512 * 1024
+    bufsize = 256 * 1024
 
     pathlabel = Label(text="<path>", font="consolas 13")
     keyfield = Entry(textvariable=key, font="system 15")
