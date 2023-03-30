@@ -15,9 +15,7 @@ def setfilepath(pathlabel):
 
 def checkpathloop(pathlabel, root):
     while True:
-        
-        print(__file__.replace("\\", "/"))
-        
+
         path = pathlabel.cget("text")
         if not isfile(path):
             pathlabel.config(text="<path>")
