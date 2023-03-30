@@ -109,6 +109,8 @@ def decrypt():
 
 
 if __name__ == '__main__':
+    print('Hello World!')
+    
     root = Tk()
     root.title('crypter')
     root.config(background='black')
