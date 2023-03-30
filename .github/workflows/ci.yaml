@@ -20,6 +20,7 @@ jobs:
           nuitka-version: main
           script-name: crypter.pyw
           standalone: true
+          disable-console: true
           enable-plugins: tk-inter
 
       - name: Upload Artifact
@@ -27,4 +28,3 @@ jobs:
         with:
           name: exe
           path: build/crypter.exe
-            
