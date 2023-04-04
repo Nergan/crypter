@@ -11,15 +11,15 @@ jobs:
       matrix:
         inculde:
           - os: macos-latest
-            artifact_name: *.app/**/*
+            artifact_name: '*.app/**/*'
             asset_name: crypter-macos
             
           - os: ubuntu-latest
-            artifact_name: *.bin
+            artifact_name: '*.bin'
             asset_name: crypter-linux
             
           - os: windows-latest
-            artifact_name: *.exe
+            artifact_name: '*.exe'
             asset_name: crypter-windows
 
     runs-on: ${{ matrix.os }}
