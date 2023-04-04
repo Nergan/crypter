@@ -1,0 +1,58 @@
+name: Automatic Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    strategy:
+      matrix:
+        inculde:
+          - os: macos-latest
+            artifact_name: '*.app/**/*'
+            asset_name: crypter-macos
+            
+          - os: ubuntu-latest
+            artifact_name: '*.bin'
+            asset_name: crypter-linux
+            
+          - os: windows-latest
+            artifact_name: '*.exe'
+            asset_name: crypter-windows
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v3
+    
+      - name: Get Commit Data
+        id: commit
+        uses: pr-mpt/actions-commit-hash@v2
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+          architecture: 'x64'
+          cache: 'pip'
+  
+      - run: pip install -r requirements.txt
+
+      - uses: Nuitka/Nuitka-Action@main
+        with:
+          nuitka-version: main
+          script-name: crypter.pyw
+          standalone: true
+          onefile: true
+          disable-console: true
+          enable-plugins: tk-inter
+
+      - uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: build/${{ matrix.artifact_name }}
+          asset_name: ${{ matrix.asset_name }}
+          tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
